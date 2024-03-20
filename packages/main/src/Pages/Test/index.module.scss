@@ -1,0 +1,65 @@
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &_key {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 10px;
+    background-color: #fff;
+    cursor: pointer;
+    text-align: center;
+    p {
+      font-size: 16;
+      font-weight: bold;
+    }
+  }
+  h1 {
+    margin: 0 10px;
+  }
+}
+.todoBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  &_ipt {
+    input {
+      width: 200px;
+      height: 30px;
+      border: 1px solid blueviolet;
+    }
+    button {
+      width: 50px;
+      height: 30px;
+      background-color: blueviolet;
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+  &_list {
+    margin-top: 10px;
+    width: 300px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    ul {
+      li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 40px;
+        p {
+          width: 100px;
+          // border-bottom: 1px solid blueviolet;
+        }
+        button {
+          height: 20px;
+          line-height: 00px;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
