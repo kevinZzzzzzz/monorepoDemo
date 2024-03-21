@@ -49,6 +49,8 @@ export default ({mode, command}) => {
             if (id.includes('node_modules')) {
               if (id.includes('vue') || id.includes('vue-router')) {
                 return 'vue'
+              } else if (id.includes('@monorepo')) {
+                return '@monorepo'
               }
               return 'vendor'; //代码宰割为第三方包
             }

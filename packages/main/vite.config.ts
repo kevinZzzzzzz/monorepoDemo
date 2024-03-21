@@ -39,6 +39,9 @@ export default ({mode, command}) => {
           assetFileNames: 'static/[ext]/[name].[hash].[ext]',
           manualChunks(id: string) {
             if (id.includes('node_modules')) {
+              if (id.includes('@monorepo')) {
+                return '@monorepo'
+              }
               return 'vendor'; //代码宰割为第三方包
             }
           },

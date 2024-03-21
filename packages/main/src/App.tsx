@@ -4,7 +4,8 @@ import ReactDOM from 'react-dom';
 import {AllRouters as routes} from "./router/index";
 import DefaultLayout from './Layout/default';
 import api from "@/Api";
-import HandleComputed from '@monorepo/compute'
+// import HandleComputed from '@monorepo/compute'
+import HandleComputed from '@monorepo/compute2'
 import PluginAdd from '@monorepo/todo'
 const Computed = new HandleComputed()
 const Todo = new PluginAdd()
