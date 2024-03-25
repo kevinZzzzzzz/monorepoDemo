@@ -38,6 +38,7 @@ export default ({mode, command}) => {
           entryFileNames: 'static/js/[name].[hash].js',
           assetFileNames: 'static/[ext]/[name].[hash].[ext]',
           manualChunks(id: string) {
+            console.log(id, 'id---------')
             if (id.includes('node_modules')) {
               if (id.includes('@monorepo')) {
                 return '@monorepo'
