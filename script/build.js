@@ -18,12 +18,10 @@ const rollupOptions = defineConfig({
     vue: "Vue"
   }
 })
-
 // 组件库全局入口
 const compontsDir = path.resolve(__dirname, "../packages/components")
 // 输出目录
 const outputDir = path.resolve(__dirname, "../build")
-
 // 生成 package.json
 const createPackageJson = name => {
   const fileStr = `{
@@ -50,6 +48,27 @@ const createPackageJson = name => {
   fs.outputFile(filePath, fileStr, "utf-8")
 }
 
+/** 单组件按需构建 */
+const buildSingle = async name => {
+  await build(
+    defineConfig({
+      ...baseConfig,
+      build: {
+        lib: {
+          entry: path.resolve(compontsDir, name),
+          name: "index",
+          fileName: "index",
+          formats: ["es", "umd"]
+        },
+        rollupOptions,
+        outDir: path.resolve(outputDir, name)
+      }
+    })
+  )
+
+  createPackageJson(name)
+}
+
 /** 全量构建 */
 const buildAll = async () => {
   await build(
@@ -70,3 +89,21 @@ const buildAll = async () => {
 
   createPackageJson()
 }
+
+const buildLib = async () => {
+  await buildAll()
+
+  // 按需打包
+  fs.readdirSync(compontsDir)
+    .filter(name => {
+      // 获取组件的目录
+      const componentDir = path.resolve(compontsDir, name)
+      const isDir = fs.lstatSync(componentDir).isDirectory()
+      return isDir && fs.readdirSync(componentDir).includes("index.ts")
+    })
+    .forEach(async name => {
+      await buildSingle(name)
+    })
+}
+
+buildLib()
