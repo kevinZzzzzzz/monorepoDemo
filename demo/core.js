@@ -1,4 +1,5 @@
 "use strict";
+console.log(this)
 /*
   Core类用途：1、实现基础功能，2、管理插件
 */
@@ -6,6 +7,7 @@
 class Core {
     constructor() {
         this.pluginMap = new Map(); // 插件集合
+        console.log(this)
         console.log('实现内核基础功能：文档初始化');
     }
     use(plugin) {
